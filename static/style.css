@@ -1,4 +1,26 @@
+/* Styles body content */
 body {
     background-color: #7d997b !important;
     font-family: "Courier New", Courier, monospace !important;
+}
+
+/* Centers twitter information */
+.tweet {
+    text-align: center;
+}
+
+/* Adjust spacing in between twitter information */
+.middle {
+    margin-top: -25px;
+    margin-bottom: 5px;
+}
+
+/* Color links black instead of the default blue */
+a {
+    color: black !important;
+}
+
+/* Add hover animation to bootstrap cards */
+.card:hover {
+    transform: scale(1.04);
 }
