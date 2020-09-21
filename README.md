@@ -1,13 +1,15 @@
 # Recipe Generator
 This project dynamically generates recipes and a relevant tweet after every page reload by using Twitter API and Spoonacular API. The web app was created using Flask as the backend framework and HTML/CSS as the frontend to design and style the page contents.
 
-# Table of Contents 
+## Table of Contents 
 
 1. [Installation](#installation)
-2. [API's](#api's)
+2. [API](#api)
 3. [Resolved Issues](#resolved-issues)
+4. [Known Problems](#known-problems)
+5. [Improvement](#improvement)
 
-# Installation
+## Installation
 Prerequisites: 
 
 * Windows, MacOS, or Linux machine.
@@ -35,33 +37,45 @@ Once everything is installed and setup, open up the [.env_sample](https://github
 
 **[Back to top](#recipe-generator)**
 
-# API's
-### Twitter API
+## API
+#### Twitter API
 * Sign up for a developer account [here.](https://developer.twitter.com/en/apply-for-access)
 
 * After signing up you will get a consumer API key, consumer secret key, access token, and an access secret key. Make note of these keys and store them in the .env file.
 
-### Spoonacular API
+#### Spoonacular API
 * Sign up for an account [here.](https://spoonacular.com/)
 
 * After signing up, you will get an API key. Make note of this key and store it in the .env file.
 
 **[Back to top](#recipe-generator)**
 
-# Resolved Issues
+## Resolved Issues
 
-### Issue #1: Some of the tweets pulled by Tweepy was truncated.
+#### Issue #1: Some of the tweets pulled by Tweepy was truncated.
 
 * Resolved by adding the tweet_mode parameter and setting it to extended to the Cursor object. [This](https://tweepy2.readthedocs.io/en/latest/cursor_tutorial.html) website helped me figure out the solution.
 
         tweet_mode = 'extended'
 
-### Issue #2: The date and time of each tweet was not in Eastern Standard Time.
+#### Issue #2: The date and time of each tweet was not in Eastern Standard Time.
 
 * Through reading the Twitter [documentation,](https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview/tweet-object) I found out that .created_at outputs the time in UTC. So to resolve this I installed and imported the pytz package which allowed me to convert the datetime object to EST. I've listed an example snippet below for an arbitrary datetime object obj:
 
         import pytz
         obj.astimezone(pytz.timezone('US/Eastern'))
 
+
+**[Back to top](#recipe-generator)**
+
+## Known Problems
+
+N/A
+
+**[Back to top](#recipe-generator)**
+
+## Improvement
+
+TBD
 
 **[Back to top](#recipe-generator)**
