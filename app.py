@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 import os
 import random
 import pytz
+import requests
+import json
 
 # Create the Flask application
 app = Flask(__name__)
@@ -17,6 +19,10 @@ auth = OAuthHandler(os.getenv('CONSUMER_API_KEY'), os.getenv('CONSUMER_SECRET'))
 auth.set_access_token(os.getenv('ACCESS_TOKEN'), os.getenv('ACCESS_SECRET'))
 api = API(auth, wait_on_rate_limit = True)
 
+# Setup access to Spoonaular API
+key = os.getenv('SPOONACULAR_API_KEY')
+url = f'https://api.spoonacular.com/recipes/complexSearch?apiKey={key}&type=dessert&sort=random&fillIngredients=true&number=1&titleMatch='
+
 # List of foods
 dessertList = ['Ice Cream', 'Cake', 'Pie', 'Cookie', 'Brownie', 'Pudding', 'Macarons']
 
@@ -26,12 +32,32 @@ index = -1
 # Displays the home page accessible at the addresss '/'
 @app.route('/')
 def home():
+    
     # Index counter to loop through food list
     global index
     index += 1
     if index == 7:
         index = 0
     
+    response = requests.get(url + dessertList[index])
+    rep = json.loads(response.text)
+    title = rep['results'][0]['title']
+    image = rep['results'][0]['image']
+    food_id = rep['results'][0]['id']
+    
+    response2 = requests.get(f'https://api.spoonacular.com/recipes/{food_id}/information?apiKey={key}&includeNutrition=false')
+    rep2 = json.loads(response2.text)
+    sourceUrl = rep2['sourceUrl']
+    servings = rep2['servings']
+    cookTime = rep2['readyInMinutes']
+    
+    ingredients = rep2['extendedIngredients']
+    ingredient_list = []
+    
+    for i in range(0, len(ingredients)):
+        ingredient_list.append(ingredients[i]['original'])
+        ingredient_list.append(ingredients[i]['image'])
+
     # Generate random number to pick a random tweet
     num = random.randint(0, 9)
 
@@ -49,6 +75,14 @@ def home():
     
     return render_template(
         'home.html',
+        title = title,
+        image = image,
+        sourceUrl = sourceUrl,
+        servings = servings,
+        cookTime = cookTime,
+        length = len(ingredient_list), 
+        ingredients = ingredient_list,
+        word = dessertList[index],
         text = '"' + tweets[num][0] + '"',
         username = ' -@' + tweets[num][1],
         date_time = tweets[num][2].astimezone(pytz.timezone('US/Eastern')).strftime('%I:%M %p · %b %d, %Y'),
