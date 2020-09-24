@@ -12,18 +12,49 @@
 <!-- Start of the body -->
     <body>
         <div class="container">
-            <br>
+            <br><br><br>
+            
+<!-- Recipe bootstrap card -->
+            <div class="row">
+                <div class="col-6 col-md-6 col-lg-6 col-xl-6">
+                    <div class="card card-body h-100 shadow-lg bg-white rounded">
+                        <h3 class="center">{{ title }}</h3>
+                        <hr>
+                        <a href="{{ sourceUrl }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block foodpic" src="{{ image }}"></a>
+                        <br>
+                        <p>Serving Size: {{ servings }}<span class="right">Preparation Time: {{ cookTime }} minutes</span></p>
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="col-6 col-md-6 col-lg-6 col-xl-6">
+                    <div class="card card-body h-100 shadow-lg bg-white rounded">
+                        <h3 class="center">Ingredients</h3>
+                        <hr>
+                        {% for i in range(0, length, 2) %}
+                            <li>
+                                ⦿ {{ ingredients[i] }}
+                                <img class="ingredients right" src="https://spoonacular.com/cdn/ingredients_100x100/{{ ingredients[i+1] }}">
+                            </li>
+                        {% endfor %}
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+            <br><br><br>
             
 <!-- Twitter bootstrap card -->
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="card card-body h-100 shadow-lg bg-white rounded">
-                        <p class="tweet">{{ text }} {{ username }}<p>
-                        <p class="tweet middle">{{ date_time }}</p>
-                        <a href="{{ url }}" class="tweet" target="_blank" rel="noopener noreferrer">{{ url }}</a>
+                        <h3 class="center">Random {{ word }} Tweets</h3>
+                        <hr>
+                        <p class="center">{{ text }} {{ username }}<p>
+                        <p class="center">{{ date_time }}</p>
+                        <a href="{{ url }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                     </div>
                 </div>
             </div>
+            <br><br><br>
             
         </div>
     </body>
