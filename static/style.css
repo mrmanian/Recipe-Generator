@@ -4,23 +4,36 @@ body {
     font-family: "Courier New", Courier, monospace !important;
 }
 
-/* Centers twitter information */
-.tweet {
-    text-align: center;
-}
-
-/* Adjust spacing in between twitter information */
-.middle {
-    margin-top: -25px;
-    margin-bottom: 5px;
-}
-
-/* Color links black instead of the default blue */
-a {
-    color: black !important;
+/* Centers text */
+.center {
+    text-align: center !important;
 }
 
 /* Add hover animation to bootstrap cards */
 .card:hover {
     transform: scale(1.04);
+}
+
+/* Change dimensions of recipe image */
+.foodpic {
+    max-width: 100%;
+    width: 450px;
+    height: 325px;
+}
+
+/* Float to the right */
+.right {
+    float: right;
+}
+
+/* Resize ingredient images */
+.ingredients {
+    max-width: 100%;
+    width: 70px;
+    height: 70px;
+}
+
+/* Remove bullet point from list */
+li {
+    list-style-type: none;
 }
