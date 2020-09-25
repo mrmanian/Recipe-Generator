@@ -14,14 +14,11 @@ app = Flask(__name__)
 # Load the .env file
 load_dotenv()
 
-# Setup access to Twitter API using keys stored in .env file
+# Setup access to Twitter API and Spoonacular API using keys stored in .env file
 auth = OAuthHandler(os.getenv('CONSUMER_API_KEY'), os.getenv('CONSUMER_SECRET'))
 auth.set_access_token(os.getenv('ACCESS_TOKEN'), os.getenv('ACCESS_SECRET'))
 api = API(auth, wait_on_rate_limit = True)
-
-# Setup access to Spoonaular API
-key = os.getenv('SPOONACULAR_API_KEY')
-url = f'https://api.spoonacular.com/recipes/complexSearch?apiKey={key}&type=dessert&sort=random&fillIngredients=true&number=1&titleMatch='
+spoonKey = os.getenv('SPOONACULAR_API_KEY')
 
 # List of foods
 dessertList = ['Ice Cream', 'Cake', 'Pie', 'Cookie', 'Brownie', 'Pudding', 'Macarons']
@@ -39,23 +36,32 @@ def home():
     if index == 7:
         index = 0
     
-    response = requests.get(url + dessertList[index])
+    # Get title, image, food id of food
+    response = requests.get(f'https://api.spoonacular.com/recipes/complexSearch?apiKey={spoonKey}&type=dessert&sort=random&fillIngredients=true&number=1&titleMatch=' + dessertList[index])
     rep = json.loads(response.text)
     title = rep['results'][0]['title']
     image = rep['results'][0]['image']
     food_id = rep['results'][0]['id']
     
-    response2 = requests.get(f'https://api.spoonacular.com/recipes/{food_id}/information?apiKey={key}&includeNutrition=false')
+    # Get url, serving size, cook time, and summary of food
+    response2 = requests.get(f'https://api.spoonacular.com/recipes/{food_id}/information?apiKey={spoonKey}&includeNutrition=false')
     rep2 = json.loads(response2.text)
     sourceUrl = rep2['sourceUrl']
     servings = rep2['servings']
     cookTime = rep2['readyInMinutes']
+    summary = rep2['summary'].replace('<b>', '').replace('</b>', '')
     
-    ingredients = rep2['extendedIngredients']
+    # Condense summary
+    split_summary = summary.split('.')
+    shortSummary = split_summary[0] + '. ' + split_summary[1] + '. ' + split_summary[2] + '. ' + split_summary[3] + '. ' + split_summary[4] + '. ' + split_summary[5] + '. '
+
+    # Get recipe ingredient details
     ingredient_list = []
-    
+    ingredients = rep2['extendedIngredients']
     for i in range(0, len(ingredients)):
-        ingredient_list.append(ingredients[i]['original'])
+        ingredient_list.append(ingredients[i]['measures']['us']['amount'])
+        ingredient_list.append(ingredients[i]['measures']['us']['unitLong'])
+        ingredient_list.append(ingredients[i]['name'])
         ingredient_list.append(ingredients[i]['image'])
 
     # Generate random number to pick a random tweet
@@ -72,7 +78,7 @@ def home():
     
     # Gather tweets and relevant information from status and store into a list
     tweets = [[tweet.full_text, tweet.user.screen_name, tweet.created_at, tweet.id] for tweet in status]
-    
+
     return render_template(
         'home.html',
         title = title,
@@ -80,6 +86,7 @@ def home():
         sourceUrl = sourceUrl,
         servings = servings,
         cookTime = cookTime,
+        summary = shortSummary,
         length = len(ingredient_list), 
         ingredients = ingredient_list,
         word = dessertList[index],
