@@ -23,6 +23,8 @@
                         <a href="{{ sourceUrl }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block foodpic" src="{{ image }}"></a>
                         <br>
                         <p>Serving Size: {{ servings }}<span class="right">Preparation Time: {{ cookTime }} minutes</span></p>
+                        <br>
+                        <p>{{ summary }}</p>
                     </div>
                 </div>
                 <br><br><br>
@@ -30,10 +32,12 @@
                     <div class="card card-body h-100 shadow-lg bg-white rounded">
                         <h3 class="center">Ingredients</h3>
                         <hr>
-                        {% for i in range(0, length, 2) %}
+                        {% for i in range(0, length, 4) %}
                             <li>
-                                ⦿ {{ ingredients[i] }}
-                                <img class="ingredients right" src="https://spoonacular.com/cdn/ingredients_100x100/{{ ingredients[i+1] }}">
+                                <img class="ingredients" src="https://spoonacular.com/cdn/ingredients_100x100/{{ ingredients[i+3] }}">
+                                {{ ingredients[i] }}
+                                {{ ingredients[i+1] }}
+                                {{ ingredients[i+2] }}
                             </li>
                         {% endfor %}
                         <br><br>
