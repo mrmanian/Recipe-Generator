@@ -74,6 +74,11 @@ If you are using AWS Cloud9, preview the application by clicking preview running
         import pytz
         obj.astimezone(pytz.timezone('US/Eastern'))
 
+#### Issue #3: When pulling ingredient images from spoonacular, sometimes an image does not exist and an ugly broken image square appears on the page.
+
+* I found out through [this](https://stackoverflow.com/questions/7995080/html-if-image-is-not-found) website that I can fix this by showing another image if the main image is not found.
+
+        onerror="this.onerror=null; this.src='https://spoonacular.com/cdn/ingredients_100x100/no.jpg'"
 
 **[Back to top](#recipe-generator)**
 
