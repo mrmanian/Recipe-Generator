@@ -3,7 +3,6 @@ from flask import Flask, render_template, url_for
 from tweepy import OAuthHandler, Cursor, API
 from dotenv import load_dotenv
 import os
-import random
 import pytz
 import requests
 import json
@@ -64,9 +63,6 @@ def home():
         ingredient_list.append(ingredients[i]['name'])
         ingredient_list.append(ingredients[i]['image'])
 
-    # Generate random number to pick a random tweet
-    num = random.randint(0, 9)
-
     # Food to search for tweets
     food = dessertList[index] + ' -filter:retweets'
     
@@ -77,7 +73,7 @@ def home():
                     lang = 'en').items(10)
     
     # Gather tweets and relevant information from status and store into a list
-    tweets = [[tweet.full_text, tweet.user.screen_name, tweet.created_at, tweet.id] for tweet in status]
+    tweets = [[tweet.full_text, tweet.user.screen_name, tweet.created_at.astimezone(pytz.timezone('US/Eastern')).strftime('%I:%M %p · %b %d, %Y'), tweet.id] for tweet in status]
 
     return render_template(
         'home.html',
@@ -89,11 +85,8 @@ def home():
         summary = shortSummary,
         length = len(ingredient_list), 
         ingredients = ingredient_list,
+        tweets = tweets,
         word = dessertList[index],
-        text = '"' + tweets[num][0] + '"',
-        username = ' -@' + tweets[num][1],
-        date_time = tweets[num][2].astimezone(pytz.timezone('US/Eastern')).strftime('%I:%M %p · %b %d, %Y'),
-        url = f'https://twitter.com/{tweets[num][1]}/status/{tweets[num][3]}'
     )
 
 # Run the application
