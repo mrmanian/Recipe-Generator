@@ -5,6 +5,7 @@
     <head>
         <title>Recipies</title>
         <link rel="stylesheet" href={{ url_for("static", filename="style.css") }} type="text/css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     </head>
@@ -18,23 +19,23 @@
             <div class="row">
                 <div class="col-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="card card-body h-100 shadow-lg bg-white rounded">
-                        <h3 class="center">{{ title }}</h3>
+                        <h3 id="first" class="center fade">{{ title }}</h3>
                         <hr>
-                        <a href="{{ sourceUrl }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block foodpic" src="{{ image }}"></a>
+                        <a id="second" class="fade" href="{{ sourceUrl }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block foodpic" src="{{ image }}"></a>
                         <br>
-                        <p>Serving Size: {{ servings }}<span class="right">Preparation Time: {{ cookTime }} minutes</span></p>
+                        <p id="third" class="fade">Serving Size: {{ servings }}<span class="right">Preparation Time: {{ cookTime }} minutes</span></p>
                         <br>
-                        <p>{{ summary }}</p>
+                        <p id="third" class="fade">{{ summary }}</p>
                     </div>
                 </div>
                 <br><br><br>
                 <div class="col-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="card card-body h-100 shadow-lg bg-white rounded">
-                        <h3 class="center">Ingredients</h3>
+                        <h3 id="first" class="center fade">Ingredients</h3>
                         <hr>
                         {% for i in range(0, length, 4) %}
-                            <li>
-                                <img class="ingredients" src="https://spoonacular.com/cdn/ingredients_100x100/{{ ingredients[i+3] }}">
+                            <li id="second" class="fade">
+                                <img class="ingredients" src="https://spoonacular.com/cdn/ingredients_100x100/{{ ingredients[i+3] }}" onerror="this.onerror=null; this.src='https://spoonacular.com/cdn/ingredients_100x100/no.jpg'">
                                 {{ ingredients[i] }}
                                 {{ ingredients[i+1] }}
                                 {{ ingredients[i+2] }}
@@ -50,11 +51,68 @@
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="card card-body h-100 shadow-lg bg-white rounded">
-                        <h3 class="center">Random {{ word }} Tweets</h3>
+                        <h3 id="first" class="center fade">Random {{ word }} Tweets</h3>
                         <hr>
-                        <p class="center">{{ text }} {{ username }}<p>
-                        <p class="center">{{ date_time }}</p>
-                        <a href="{{ url }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                        <div id="second" class="hidden fade">
+                            <p class="center">"{{ tweets[0][0] }}" -@{{ tweets[0][1] }}<p>
+                            <p class="center">{{ tweets[0][2] }}</p>
+                            <a href="https://twitter.com/{{ tweets[0][1] }}/status/{{ tweets[0][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                        </div>
+
+                        <div class="hidden">
+                            <p class="center">"{{ tweets[1][0] }}" -@{{ tweets[1][1] }}<p>
+                            <p class="center">{{ tweets[1][2] }}</p>
+                            <a href="https://twitter.com/{{ tweets[1][1] }}/status/{{ tweets[1][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                        </div>
+
+                        <div class="hidden">
+                            <p class="center">"{{ tweets[2][0] }}" -@{{ tweets[2][1] }}<p>
+                            <p class="center">{{ tweets[2][2] }}</p>
+                            <a href="https://twitter.com/{{ tweets[2][1] }}/status/{{ tweets[2][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                        </div>
+
+                        <div class="hidden">
+                            <p class="center">"{{ tweets[3][0] }}" -@{{ tweets[3][1] }}<p>
+                            <p class="center">{{ tweets[3][2] }}</p>
+                            <a href="https://twitter.com/{{ tweets[3][1] }}/status/{{ tweets[3][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                        </div>
+
+                        <div class="hidden">
+                            <p class="center">"{{ tweets[4][0] }}" -@{{ tweets[4][1] }}<p>
+                            <p class="center">{{ tweets[4][2] }}</p>
+                            <a href="https://twitter.com/{{ tweets[4][1] }}/status/{{ tweets[4][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                        </div>
+
+                        <div class="hidden">
+                            <p class="center">"{{ tweets[5][0] }}" -@{{ tweets[5][1] }}<p>
+                            <p class="center">{{ tweets[5][2] }}</p>
+                            <a href="https://twitter.com/{{ tweets[5][1] }}/status/{{ tweets[5][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                        </div>
+
+                        <div class="hidden">
+                            <p class="center">"{{ tweets[6][0] }}" -@{{ tweets[6][1] }}<p>
+                            <p class="center">{{ tweets[6][2] }}</p>
+                            <a href="https://twitter.com/{{ tweets[6][1] }}/status/{{ tweets[6][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                        </div>
+
+                        <div class="hidden">
+                            <p class="center">"{{ tweets[7][0] }}" -@{{ tweets[7][1] }}<p>
+                            <p class="center">{{ tweets[7][2] }}</p>
+                            <a href="https://twitter.com/{{ tweets[7][1] }}/status/{{ tweets[7][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                        </div>
+
+                        <div class="hidden">
+                            <p class="center">"{{ tweets[8][0] }}" -@{{ tweets[8][1] }}<p>
+                            <p class="center">{{ tweets[8][2] }}</p>
+                            <a href="https://twitter.com/{{ tweets[8][1] }}/status/{{ tweets[8][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                        </div>
+
+                        <div class="hidden">
+                            <p class="center">"{{ tweets[9][0] }}" -@{{ tweets[9][1] }}<p>
+                            <p class="center">{{ tweets[9][2] }}</p>
+                            <a href="https://twitter.com/{{ tweets[9][1] }}/status/{{ tweets[9][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -64,3 +122,15 @@
     </body>
     
 </html>
+
+<!-- JQuery code for fading in and out different twitter tweets -->
+<script>
+    (function() {
+        var index = -1;
+        function next() {
+            index++;
+            $(".hidden").eq(index % $(".hidden").length).fadeIn(1000).delay(7000).fadeOut(1000, next);
+        }
+        next();
+    })();
+</script>
