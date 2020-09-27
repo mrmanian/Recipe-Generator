@@ -69,3 +69,17 @@ li {
 #third {
     animation-delay: 5s;
 }
+
+/* Make the up and down arrow in servings visible */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+    opacity: 1;
+}
+
+/* Make measurement input box invisible */
+.measure {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+}
