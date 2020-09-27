@@ -23,8 +23,7 @@
                         <hr>
                         <a id="second" class="fade" href="{{ sourceUrl }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block foodpic" src="{{ image }}"></a>
                         <br>
-                        <p id="third" class="fade">Serving Size: {{ servings }}<span class="right">Preparation Time: {{ cookTime }} minutes</span></p>
-                        <br>
+                        <p id="third" class="fade">Serving Size: <input id="serving" type="number" style="width: 60px" value="{{ servings }}" min="1"><span class="right">Preparation Time: {{ cookTime }} minutes</span></p>
                         <p id="third" class="fade">{{ summary }}</p>
                     </div>
                 </div>
@@ -36,7 +35,7 @@
                         {% for i in range(0, length, 4) %}
                             <li id="second" class="fade">
                                 <img class="ingredients" src="https://spoonacular.com/cdn/ingredients_100x100/{{ ingredients[i+3] }}" onerror="this.onerror=null; this.src='https://spoonacular.com/cdn/ingredients_100x100/no.jpg'">
-                                {{ ingredients[i] }}
+                                <input readonly class="measure" type="text" style="width: 60px" value="{{ ingredients[i] }}">
                                 {{ ingredients[i+1] }}
                                 {{ ingredients[i+2] }}
                             </li>
@@ -56,61 +55,61 @@
                         <div id="second" class="hidden fade">
                             <p class="center">"{{ tweets[0][0] }}" -@{{ tweets[0][1] }}<p>
                             <p class="center">{{ tweets[0][2] }}</p>
-                            <a href="https://twitter.com/{{ tweets[0][1] }}/status/{{ tweets[0][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                            <a href="https://twitter.com/{{ tweets[0][1] }}/status/{{ tweets[0][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                         </div>
 
                         <div class="hidden">
                             <p class="center">"{{ tweets[1][0] }}" -@{{ tweets[1][1] }}<p>
                             <p class="center">{{ tweets[1][2] }}</p>
-                            <a href="https://twitter.com/{{ tweets[1][1] }}/status/{{ tweets[1][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                            <a href="https://twitter.com/{{ tweets[1][1] }}/status/{{ tweets[1][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                         </div>
 
                         <div class="hidden">
                             <p class="center">"{{ tweets[2][0] }}" -@{{ tweets[2][1] }}<p>
                             <p class="center">{{ tweets[2][2] }}</p>
-                            <a href="https://twitter.com/{{ tweets[2][1] }}/status/{{ tweets[2][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                            <a href="https://twitter.com/{{ tweets[2][1] }}/status/{{ tweets[2][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                         </div>
 
                         <div class="hidden">
                             <p class="center">"{{ tweets[3][0] }}" -@{{ tweets[3][1] }}<p>
                             <p class="center">{{ tweets[3][2] }}</p>
-                            <a href="https://twitter.com/{{ tweets[3][1] }}/status/{{ tweets[3][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                            <a href="https://twitter.com/{{ tweets[3][1] }}/status/{{ tweets[3][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                         </div>
 
                         <div class="hidden">
                             <p class="center">"{{ tweets[4][0] }}" -@{{ tweets[4][1] }}<p>
                             <p class="center">{{ tweets[4][2] }}</p>
-                            <a href="https://twitter.com/{{ tweets[4][1] }}/status/{{ tweets[4][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                            <a href="https://twitter.com/{{ tweets[4][1] }}/status/{{ tweets[4][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                         </div>
 
                         <div class="hidden">
                             <p class="center">"{{ tweets[5][0] }}" -@{{ tweets[5][1] }}<p>
                             <p class="center">{{ tweets[5][2] }}</p>
-                            <a href="https://twitter.com/{{ tweets[5][1] }}/status/{{ tweets[5][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                            <a href="https://twitter.com/{{ tweets[5][1] }}/status/{{ tweets[5][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                         </div>
 
                         <div class="hidden">
                             <p class="center">"{{ tweets[6][0] }}" -@{{ tweets[6][1] }}<p>
                             <p class="center">{{ tweets[6][2] }}</p>
-                            <a href="https://twitter.com/{{ tweets[6][1] }}/status/{{ tweets[6][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                            <a href="https://twitter.com/{{ tweets[6][1] }}/status/{{ tweets[6][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                         </div>
 
                         <div class="hidden">
                             <p class="center">"{{ tweets[7][0] }}" -@{{ tweets[7][1] }}<p>
                             <p class="center">{{ tweets[7][2] }}</p>
-                            <a href="https://twitter.com/{{ tweets[7][1] }}/status/{{ tweets[7][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                            <a href="https://twitter.com/{{ tweets[7][1] }}/status/{{ tweets[7][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                         </div>
 
                         <div class="hidden">
                             <p class="center">"{{ tweets[8][0] }}" -@{{ tweets[8][1] }}<p>
                             <p class="center">{{ tweets[8][2] }}</p>
-                            <a href="https://twitter.com/{{ tweets[8][1] }}/status/{{ tweets[8][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                            <a href="https://twitter.com/{{ tweets[8][1] }}/status/{{ tweets[8][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                         </div>
 
                         <div class="hidden">
                             <p class="center">"{{ tweets[9][0] }}" -@{{ tweets[9][1] }}<p>
                             <p class="center">{{ tweets[9][2] }}</p>
-                            <a href="https://twitter.com/{{ tweets[9][1] }}/status/{{ tweets[9][3] }}" class="center" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
+                            <a href="https://twitter.com/{{ tweets[9][1] }}/status/{{ tweets[9][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                         </div>
 
                     </div>
@@ -125,12 +124,35 @@
 
 <!-- JQuery code for fading in and out different twitter tweets -->
 <script>
-    (function() {
+    $(document).ready(function() {
         var index = -1;
         function next() {
             index++;
             $(".hidden").eq(index % $(".hidden").length).fadeIn(1000).delay(7000).fadeOut(1000, next);
         }
         next();
-    })();
+    });
+</script>
+
+<!-- JQuery code for updating serving size ingredient proportions -->
+<script>
+    $(document).ready(function() {
+        var oldValue = $("#serving").val();
+        $("#serving").on("change",function() {
+            var newValue = $(this).val();
+            if (newValue > oldValue) {
+                var multiplied = $("#serving").val() / (Number($("#serving").val()) - 1);
+                $(".measure").each(function() {
+                    $(this).val($(this).val() * multiplied);
+                });
+            }
+            else {
+                var multiplied = $("#serving").val() / (Number($("#serving").val()) + 1);
+                $(".measure").each(function() {
+                    $(this).val($(this).val() * multiplied);
+                });
+            }
+            oldValue = newValue;
+        });
+    });
 </script>
