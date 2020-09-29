@@ -1,7 +1,13 @@
 /* Styles body content */
 body {
-    background-color: #7d997b !important;
     font-family: "Courier New", Courier, monospace !important;
+    background-image: url("https://i.postimg.cc/fRHrpcnm/bg2.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    background-position: center;
 }
 
 /* Centers text */
@@ -52,34 +58,93 @@ li {
         opacity: 1
     }
 }
-
 .fade {
     opacity: 0;
     animation: fadeIn 1.5s forwards;
 }
 
+/* First fade in 3 seconds */
 #first {
-    animation-delay: 1s;
-}
-
-#second {
     animation-delay: 3s;
 }
 
-#third {
+/* Second fade in 5 seconds */
+#second {
     animation-delay: 5s;
 }
 
+/* Third fade in 7 seconds */
+#third {
+    animation-delay: 7s;
+}
+
 /* Make the up and down arrow in servings visible */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {  
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     opacity: 1;
 }
 
 /* Make measurement input box invisible */
 .measure {
-  border-top-style: hidden;
-  border-right-style: hidden;
-  border-left-style: hidden;
-  border-bottom-style: hidden;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+}
+
+/* Wrapper for loading animation */
+.wrapper {
+    position: fixed;
+    z-index: 9999;
+    background: #e0e0eb;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, .3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+    top: 40%;
+    left: 50%;
+}
+
+/* Adjusts text position underneath loading spinner */
+.loading_text {
+    margin-left: 8vh;
+}
+
+/* Have the loading animation spin */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    to {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+/* Footer copyright text */
+.copyright {
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+    margin-top: 11px;
+    margin-bottom: 11px;
+    border-top: ridge;
 }
