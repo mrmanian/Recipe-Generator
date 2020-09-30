@@ -20,7 +20,7 @@ api = API(auth, wait_on_rate_limit = True)
 spoonKey = os.getenv('SPOONACULAR_API_KEY')
 
 # List of foods
-dessertList = ['Ice Cream', 'Cake', 'Pie', 'Cookie', 'Brownie', 'Pudding', 'Macarons']
+dessertList = ['Ice Cream', 'Cake', 'Pie', 'Cookie', 'Brownie', 'Pudding', 'Macarons', 'Donut', 'Buscuit', 'Smoothie']
 
 # Create new list to use when no tweets are found and empty list when no recipes are found
 no_tweets_found = [['No tweets found.', '', '', ''] for _ in range(10)]
@@ -119,7 +119,7 @@ def home():
     else:
         # Index counter to loop through food list
         index += 1
-        if index == 7:
+        if index == 10:
             index = 0
         
         # Get title, image, food id of food
