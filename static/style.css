@@ -10,6 +10,24 @@ body {
     background-position: center;
 }
 
+/* Style thematic break */
+hr {
+	border-top: 1px solid #8c8b8b;
+	text-align: center;
+}
+hr:after {
+	content: '§';
+	display: inline-block;
+	position: relative;
+	top: -16px;
+	padding: 0 10px;
+	color: #8c8b8b;
+	font-size: 20px;
+	-webkit-transform: rotate(60deg);
+	-moz-transform: rotate(60deg);
+	transform: rotate(60deg);
+}
+
 /* Centers text */
 .center {
     text-align: center !important;
@@ -65,17 +83,17 @@ li {
 
 /* First fade in 3 seconds */
 #first {
-    animation-delay: 3s;
+    animation-delay: 2.5s;
 }
 
 /* Second fade in 5 seconds */
 #second {
-    animation-delay: 5s;
+    animation-delay: 4.5s;
 }
 
 /* Third fade in 7 seconds */
 #third {
-    animation-delay: 7s;
+    animation-delay: 6.5s;
 }
 
 /* Make the up and down arrow in servings visible */
@@ -142,7 +160,6 @@ input[type=number]::-webkit-outer-spin-button {
 /* Footer copyright text */
 .copyright {
     font-size: 14px;
-    text-align: center;
     line-height: 20px;
     margin-top: 11px;
     margin-bottom: 11px;
