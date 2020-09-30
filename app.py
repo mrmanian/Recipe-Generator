@@ -20,7 +20,7 @@ api = API(auth, wait_on_rate_limit = True)
 spoonKey = os.getenv('SPOONACULAR_API_KEY')
 
 # List of foods
-dessertList = ['Ice Cream', 'Cake', 'Pie', 'Cookie', 'Brownie', 'Pudding', 'Smoothie']
+dessertList = ['Ice Cream', 'Cake', 'Pie', 'Cookie', 'Brownie', 'Pudding', 'Macarons']
 
 # Create new list to use when no tweets are found and empty list when no recipes are found
 no_tweets_found = [['No tweets found.', '', '', ''] for _ in range(10)]
@@ -86,8 +86,8 @@ def home():
         # Gather tweets and relevant information from status and store into a list
         tweets = [['"' + tweet.full_text + '"', ' -@' + tweet.user.screen_name, tweet.created_at.astimezone(pytz.timezone('US/Eastern')).strftime('%I:%M %p · %b %d, %Y'), 'https://twitter.com/' + tweet.user.screen_name + '/status/' + str(tweet.id)] for tweet in status]
         
-        # If there are no tweets found
-        if not tweets:
+        # If there are less than 10 tweets found
+        if len(tweets) < 10:
             return render_template(
             'home.html',
             title = title,
