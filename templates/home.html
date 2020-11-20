@@ -43,9 +43,9 @@
                     <div class="card card-body h-100 shadow-lg bg-white rounded">
                         <h3 id="first" class="center thicker fade">{{ title }}</h3>
                         <hr>
-                        <a id="second" class="fade" href="{{ sourceUrl }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block foodpic" src="{{ image }}" onerror="this.onerror=null; this.src='https://spoonacular.com/cdn/ingredients_100x100/no.jpg'"></a>
+                        <a id="second" class="fade" href="{{ source_url }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block foodpic" src="{{ image }}" onerror="this.onerror=null; this.src='https://spoonacular.com/cdn/ingredients_100x100/no.jpg'"></a>
                         <br>
-                        <p id="third" class="fade">Serving Size: <input id="serving" type="number" style="width: 60px" value="{{ servings }}" min="1"><span class="right">Preparation Time: {{ cookTime }} minutes</span></p>
+                        <p id="third" class="fade">Serving Size: <input id="serving" type="number" style="width: 60px" value="{{ servings }}" min="1"><span class="right">Preparation Time: {{ cook_time }} minutes</span></p>
                         <p id="third" class="center fade">{{ summary }}</p>
                     </div>
                 </div>
@@ -114,24 +114,6 @@
                             <p class="center">{{ tweets[6][0] }} {{ tweets[6][1] }}<p>
                             <p class="center">{{ tweets[6][2] }}</p>
                             <a href="{{ tweets[6][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
-                        </div>
-                        
-                        <div class="hidden">
-                            <p class="center">{{ tweets[7][0] }} {{ tweets[7][1] }}<p>
-                            <p class="center">{{ tweets[7][2] }}</p>
-                            <a href="{{ tweets[7][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
-                        </div>
-                        
-                        <div class="hidden">
-                            <p class="center">{{ tweets[8][0] }} {{ tweets[8][1] }}<p>
-                            <p class="center">{{ tweets[8][2] }}</p>
-                            <a href="{{ tweets[8][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
-                        </div>
-                        
-                        <div class="hidden">
-                            <p class="center">{{ tweets[9][0] }} {{ tweets[9][1] }}<p>
-                            <p class="center">{{ tweets[9][2] }}</p>
-                            <a href="{{ tweets[9][3] }}" target="_blank" rel="noopener noreferrer"><img class="mx-auto d-block" src="https://img.icons8.com/color/48/000000/twitter.png"/></a>
                         </div>
                         
                     </div>
