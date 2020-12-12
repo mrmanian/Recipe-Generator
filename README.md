@@ -1,14 +1,13 @@
-# Recipe Generator
+# [Recipe Generator](https://mrmrecipes.herokuapp.com/)
 This project dynamically generates recipes and a relevant tweet after every page reload by using Twitter API and Spoonacular API. The web app was created using Flask as the backend framework and HTML/CSS/Boostrap/JQuery as the frontend to design and style the page contents.
 
 ## Table of Contents 
 
 1. [Installation](#installation)
 2. [API](#api)
-3. [Resolved Issues](#resolved-issues)
-4. [Known Problems](#known-problems)
-5. [Improvement](#improvement)
-6. [Final Remarks](#final-remarks)
+3. [Known Problems](#known-problems)
+4. [Improvement](#improvement)
+5. [Final Remarks](#final-remarks)
 
 ## Installation
 Prerequisites: 
@@ -19,8 +18,8 @@ Prerequisites:
 
 To run this app, you first need to clone my repo to your local machine and then cd into it by typing the following commands on your terminal.
 
-        git clone https://github.com/NJIT-CS490/project1-mrm54.git
-        cd project1-mrm54
+        git clone https://github.com/mrmanian/Recipe-Generator.git
+        cd Recipe-Generator
 
 I have provided a [requirements.txt](https://github.com/NJIT-CS490/project1-mrm54/blob/master/requirements.txt) file which consists of all the packages that were used (python, flask, jinja2, python-dotenv, pytz, requests, tweepy). Use the package manager [pip](https://pip.pypa.io/en/stable/installing/) to download these packages. Using pip or pip3 both works.
 
@@ -80,35 +79,6 @@ If all went correctly, the website should be up and running!! In case it does no
 
 **[Back to top](#recipe-generator)**
 
-## Resolved Issues
-
-#### Issue #1: Some of the tweets pulled by Tweepy was truncated.
-
-* Resolved by adding the tweet_mode parameter and setting it to extended to the Cursor object. [This](https://tweepy2.readthedocs.io/en/latest/cursor_tutorial.html) website helped me figure out the solution.
-
-        tweet_mode = 'extended'
-
-#### Issue #2: The date and time of each tweet was not in Eastern Standard Time.
-
-* Through reading the Twitter [documentation,](https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview/tweet-object) I found out that .created_at outputs the time in UTC. So to resolve this I installed and imported the pytz package which allowed me to convert the datetime object to EST. I've listed an example snippet below for an arbitrary datetime object obj.
-
-        import pytz
-        obj.astimezone(pytz.timezone('US/Eastern'))
-
-#### Issue #3: When pulling ingredient images from spoonacular, sometimes an image does not exist and an ugly broken image square appears on the page.
-
-* I found out through [this](https://stackoverflow.com/questions/7995080/html-if-image-is-not-found) website that I can fix this by showing another image if the main image is not found.
-
-        onerror="this.onerror=null; this.src='https://spoonacular.com/cdn/ingredients_100x100/no.jpg'"
-
-#### Issue #4: A 'confirm form resubmission' alert appeared when clicking reload after using the search bar to search for a recipe.
-
-* This kept happening because after searching for a recipe, the website switches to the POST method so refreshing it will attempt to resubmit the previous search. I resolved this by using Javascript/JQuery to 'change' the history back to the default '/' home page when clicking the refresh button. While this is a 'hacky' way, it got the job done.
-
-        history.pushState(null, "", "/");
-
-**[Back to top](#recipe-generator)**
-
 ## Known Problems
 
 #### Problem #1: When searching for tweets, the searched food is part of the authors username and not in the tweet. It will still display it even through the tweet is irrelevant to the food.
@@ -131,6 +101,6 @@ If all went correctly, the website should be up and running!! In case it does no
 
 ## Final Remarks
 
-Please feel free to let me know if any issues arise via the issues tab on Github. Also, if there is a huge feature that would be beneficial to add feel free to clone the repo and try to implement it or let me know so I can also attempt to add it and update the repository!
+Please feel free to let me know if any issues arise via the issues tab on Github. If there is a big feature that would be beneficial to add, feel free to fork the repo and try to implement it or let me know so I can also attempt to add it and update the repository!
 
 **[Back to top](#recipe-generator)**
